@@ -33,7 +33,7 @@ int main(void)
 		{
 			if(k > arr[j])
 			{
-				k = arr[j], set = j;	//§ä¥X³Ì¤jªº 
+				k = arr[j], set = j;	//Â§Ã¤Â¥XÂ³ÃŒÂ¤jÂªÂº 
 			}
 		}
 		swap(&arr[i], &arr[set]);
