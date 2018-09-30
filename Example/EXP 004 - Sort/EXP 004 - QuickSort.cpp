@@ -19,7 +19,7 @@ int Partition(int *arr, int front, int end){
         }
     }
     i++;
-    swap(&arr[i], &arr[end]);		//¤ñ¸û 
+    swap(&arr[i], &arr[end]);		//Â¤Ã±Â¸Ã» 
     return i;
 }
 void QuickSort(int *arr, int front, int end){
