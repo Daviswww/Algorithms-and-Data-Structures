@@ -17,9 +17,9 @@ void merge(int arr[], int l, int m, int r)
     for (j = 0; j < n2; j++)
         R[j] = arr[m + 1+ j];
  
-    i = 0; //�Ĥ@ 
-    j = 0; //�ĤG
-    k = l; //�X��
+    i = 0; //²Ä¤@ 
+    j = 0; //²Ä¤G
+    k = l; //¦X¨Ö
     while (i < n1 && j < n2)
     {
         if (L[i] <= R[j])
