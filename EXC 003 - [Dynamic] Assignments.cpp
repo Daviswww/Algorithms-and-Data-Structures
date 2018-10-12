@@ -5,7 +5,7 @@ int jb[100][100], dp[100];
 int main()
 {
 	int n, maxn = 0;
-	while(cin >> n)
+	while(cin >> n && n)
 	{
 		int x, y, z;
 		for(int i = 0; i < 100; i++)
