@@ -26,7 +26,7 @@ int main(void)
 		{
 			top[i] = i;
 		}
-		memset(dp,0,sizeof(dp)); //Âk¹s	
+		memset(dp,0,sizeof(dp)); //Ã‚kÂ¹s	
 		
 		for(int i=1;i<=n;++i)
 		{
