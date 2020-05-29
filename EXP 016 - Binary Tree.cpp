@@ -5,7 +5,6 @@ using namespace std;
 struct Node{
     int key;
     Node *left;
-    Node *mid;
     Node *right;
 };
 
@@ -16,49 +15,31 @@ Node* createNode(int key){
     node->right = NULL;
     return node;
 }
-  
 Node* search(Node* root, int key){
-    if(root == NULL)
-        return NULL;
-    queue< Node* > q;
-    Node* out;
-    q.push(root);
-
-    while(!q.empty()){
-        Node* temp = q.front();
-        q.pop();
-        
-        if(temp->key == key) out = temp;
-        if(temp->left != NULL) q.push(temp->left);
-        if(temp->right != NULL) q.push(temp->right);
-    }
-    return out;
-}
-
-void insert(Node *root, int parent, int key){
-    Node *nodeToInsert = createNode(key);
     queue<Node*> q;
     q.push(root);
 
     while(!q.empty()){
         Node *temp = q.front();
         q.pop();
-        if(temp->left == NULL && temp->key == parent){
-            cout << "Gate: " << temp->key << endl;
-            temp->left = nodeToInsert;
-            return;
-        }else if(temp->left != NULL){
-            q.push(temp->left);
-        }
-        if(temp->right == NULL && temp->key == parent){
-            cout << "Gate: " << temp->key << endl;
-            temp->right = nodeToInsert;
-            return;
-        }else if(temp->right != NULL){
-            q.push(temp->right);
-        }
+        if(temp->key == key) return temp;
+        if(temp->left != NULL) q.push(temp->left);
+        if(temp->right != NULL) q.push(temp->right);
     }
-    cout << "No parent or full!!" << endl;
+    return NULL;
+}
+void print(Node *node);
+void insert(Node *root, int parent, int key){
+    Node *nodeToInsert = createNode(key); 
+    Node *node = search(root, parent);
+    if(node->left == NULL) {
+        node->left = nodeToInsert;
+        return;
+    }
+    if(node->right == NULL) {
+        node->right = nodeToInsert;
+        return;
+    }
 }
 
 int main()
@@ -68,11 +49,33 @@ int main()
     root->left = createNode(2);
     root->right = createNode(4);
     root->left->left = createNode(3);
-    root->left->right = createNode(7);
     root->right->left = createNode(5);
     root->right->right = createNode(6);
-    insert(root, 3, 8);
-    Node *node = search(root, 4);
-    cout << node->left->key << endl;
+    /*
+             1
+            / \
+           2   4
+          /   / \
+         3   5   6
+    */
+    insert(root, 2, 8);
+    Node *node = search(root, 2);
+    print(node);
+
     return 0;
+}
+
+void print(Node *node){
+    printf("  %d\n", node->key);
+    printf(" / \\\n");
+    if(node->left != NULL){
+        printf("%d   ", node->left->key);
+    }else{
+        printf("X   ");
+    }
+    if(node->right != NULL){
+        printf("%d\n", node->right->key);
+    }else{
+        printf("X\n");
+    }
 }
